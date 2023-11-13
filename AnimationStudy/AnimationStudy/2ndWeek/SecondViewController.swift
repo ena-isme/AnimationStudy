@@ -50,8 +50,9 @@ class SecondViewController: UIViewController {
         
         //UILongPressGestureRecognizer
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(viewPress))
-        //        longPressGesture.minimumPressDuration = 5.0
-        //        longPressGesture.numberOfTouchesRequired = 2
+//                longPressGesture.minimumPressDuration = 5.0
+//                longPressGesture.numberOfTouchesRequired = 2
+        longPressGesture.allowableMovement = 10
         self.testView.addGestureRecognizer(longPressGesture)
         
         //UIPanGestureRecognizer
@@ -97,14 +98,14 @@ class SecondViewController: UIViewController {
     @objc
     func viewPress(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
+        case .possible:
+            print("Possibe")
         case .began:
             print("Start\n")
         case .changed:
             print("Change\n")
         case .ended:
             print("End\n")
-        case .possible:
-            print("Possibe")
         case .cancelled:
             print("Cancel")
         case .failed:

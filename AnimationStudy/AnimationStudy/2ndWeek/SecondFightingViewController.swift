@@ -1,5 +1,5 @@
 //
-//  SecondFightingViewController.swift
+//  SecondFightinViewController.swift
 //  AnimationStudy
 //
 //  Created by 신지원 on 11/13/23.
@@ -7,68 +7,49 @@
 
 import UIKit
 
-import Then
-import SnapKit
-
 class SecondFightingViewController: UIViewController {
-    
+
     var score: Int = 0
+    var timer: Timer? = nil
+    var isPause: Bool = true
+    
+    private lazy var kurommi = UIImageView(image: UIImage(named: "kuromi"))
+    private let topToast = UIImageView(image: UIImage(named: "toast"))
+    private let bottomToast = UIImageView(image: UIImage(named: "toast"))
+    private let leadingToast = UIImageView(image: UIImage(named: "toast"))
+    private let trailingToast = UIImageView(image: UIImage(named: "toast"))
+    private let scoreLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.text = "Hi"
+        $0.font = UIFont(name: "Korail-Round-Gothic-Light", size: 20)
+        $0.textColor = .brown
+        $0.numberOfLines = 2
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
-        self.setLayout()
-        self.makeEnemy()
-        self.startTimer()
+        setLayout()
+        setToast()
+//        startTimer()
+        target()
     }
     
-    var timer: Timer? = nil
-    var isPause: Bool = true
-    
-    private func startTimer() {
-        guard timer == nil else { return }
-        self.timer = Timer.scheduledTimer(timeInterval: 0.5,
-                                          target: self,
-                                          selector: #selector(self.enemyMove),
-                                          userInfo: nil,
-                                          repeats: true)
+    private func target() {
+        //LongPress 제스처 추가
+        let press = UILongPressGestureRecognizer(target: self, action: #selector(viewPress))
+        press.minimumPressDuration = 3.0
+        kurommi.addGestureRecognizer(press)
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(viewPan(_:)))
+        kurommi.addGestureRecognizer(gesture)
+        kurommi.isUserInteractionEnabled = true
     }
     
-    open func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
+    //Pan 제스처 함수
     @objc
-    private func enemyMove() {
-        var topEnemyY = self.topEnemy.frame.origin.y
-        topEnemyY += 10
-        self.topEnemy.frame = .init(origin: .init(x: self.topEnemy.frame.origin.x,
-                                                  y: topEnemyY),
-                                    size: self.topEnemy.frame.size)
-        
-        var bottomEnemyY = self.bottomEnemy.frame.origin.y
-        bottomEnemyY -= 10
-        self.bottomEnemy.frame = .init(origin: .init(x: self.bottomEnemy.frame.origin.x,
-                                                     y: bottomEnemyY),
-                                       size: self.bottomEnemy.frame.size)
-        
-        var leadingEnemyX = self.leadingEnemy.frame.origin.x
-        leadingEnemyX += 10
-        self.leadingEnemy.frame = .init(origin: .init(x: leadingEnemyX,
-                                                      y: self.leadingEnemy.frame.origin.y),
-                                        size: self.leadingEnemy.frame.size)
-        
-        var trailingEnemyX = self.trailingEnemy.frame.origin.x
-        trailingEnemyX -= 10
-        self.trailingEnemy.frame = .init(origin: .init(x: trailingEnemyX,
-                                                       y: self.trailingEnemy.frame.origin.y),
-                                         size: self.trailingEnemy.frame.size)
-        self.calculatePositionReached()
-    }
-    
-    @objc private func didImageViewMoved(_ sender: UIPanGestureRecognizer) {
+    private func viewPan(_ sender: UIPanGestureRecognizer) {
         let transition = sender.translation(in: kurommi)
         let changedX = kurommi.center.x + transition.x
         let changedY = kurommi.center.y + transition.y
@@ -78,51 +59,27 @@ class SecondFightingViewController: UIViewController {
         sender.setTranslation(.zero, in: self.kurommi)
     }
     
+    //longPress 제스처 함수
+    @objc
+    private func viewPress(gesture : UILongPressGestureRecognizer) {
+        if gesture.state == .ended {
+            startTimer()
+        }
+    }
     
-    private func calculatePositionReached() {
-        if self.kurommi.frame.minX <= self.topEnemy.frame.minX &&
-            self.kurommi.frame.maxX >= self.topEnemy.frame.maxX &&
-            self.kurommi.frame.minY <= self.topEnemy.frame.minY &&
-            self.kurommi.frame.maxY >= self.topEnemy.frame.maxY
-        {
-            self.scoreLabel.text = "Game End, Score:\(self.score)"
-            self.stopTimer()
-        } else {
-            self.score += 10
-        }
-        
-        if self.kurommi.frame.minX <= self.leadingEnemy.frame.minX &&
-            self.kurommi.frame.maxX >= self.leadingEnemy.frame.maxX &&
-            self.kurommi.frame.minY <= self.leadingEnemy.frame.minY &&
-            self.kurommi.frame.maxY >= self.leadingEnemy.frame.maxY
-        {
-            self.scoreLabel.text = "Game End, Score:\(self.score)"
-            self.stopTimer()
-        } else {
-            self.score += 10
-        }
-        
-        if self.kurommi.frame.minX <= self.trailingEnemy.frame.minX &&
-            self.kurommi.frame.maxX >= self.trailingEnemy.frame.maxX &&
-            self.kurommi.frame.minY <= self.trailingEnemy.frame.minY &&
-            self.kurommi.frame.maxY >= self.trailingEnemy.frame.maxY
-        {
-            self.scoreLabel.text = "Game End, Score:\(self.score)"
-            self.stopTimer()
-        } else {
-            self.score += 10
-        }
-        
-        if self.kurommi.frame.minX <= self.bottomEnemy.frame.minX &&
-            self.kurommi.frame.maxX >= self.bottomEnemy.frame.maxX &&
-            self.kurommi.frame.minY <= self.bottomEnemy.frame.minY &&
-            self.kurommi.frame.maxY >= self.bottomEnemy.frame.maxY
-        {
-            self.scoreLabel.text = "Game End, Score:\(self.score)"
-            self.stopTimer()
-        } else {
-            self.score += 10
-        }
+    //시간 측정
+    private func startTimer() {
+        guard timer == nil else { return }
+        self.timer = Timer.scheduledTimer(timeInterval: 0.5,
+                                          target: self,
+                                          selector: #selector(self.moveToast),
+                                          userInfo: nil,
+                                          repeats: true)
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
     
     private func setLayout() {
@@ -138,42 +95,101 @@ class SecondFightingViewController: UIViewController {
         }
     }
     
-    private func makeEnemy() {
-        self.view.addSubview(topEnemy)
-        self.view.addSubview(bottomEnemy)
-        self.view.addSubview(leadingEnemy)
-        self.view.addSubview(trailingEnemy)
+    private func setToast() {
+        self.view.addSubview(topToast)
+        self.view.addSubview(bottomToast)
+        self.view.addSubview(leadingToast)
+        self.view.addSubview(trailingToast)
         
-        topEnemy.snp.makeConstraints {
+        topToast.snp.makeConstraints {
             $0.top.centerX.equalToSuperview()
             $0.width.height.equalTo(50)
         }
-        leadingEnemy.snp.makeConstraints {
+        leadingToast.snp.makeConstraints {
             $0.leading.centerY.equalToSuperview()
             $0.width.height.equalTo(50)
         }
-        trailingEnemy.snp.makeConstraints {
+        trailingToast.snp.makeConstraints {
             $0.trailing.centerY.equalToSuperview()
             $0.width.height.equalTo(50)
         }
-        bottomEnemy.snp.makeConstraints {
+        bottomToast.snp.makeConstraints {
             $0.bottom.centerX.equalToSuperview()
             $0.width.height.equalTo(50)
         }
     }
     
-    private lazy var kurommi = UIImageView(image: UIImage(named: "kuromi")).then {
-        let gesture = UIPanGestureRecognizer(target: self,
-                                             action: #selector(didImageViewMoved(_:)))
-        $0.addGestureRecognizer(gesture)
-        $0.isUserInteractionEnabled = true
+    @objc
+    private func moveToast() {
+        var topToastY = self.topToast.frame.origin.y
+        topToastY += 10
+        self.topToast.frame = .init(origin: .init(x: self.topToast.frame.origin.x,
+                                                  y: topToastY),
+                                    size: self.topToast.frame.size)
+        
+        var bottomToastY = self.bottomToast.frame.origin.y
+        bottomToastY -= 10
+        self.bottomToast.frame = .init(origin: .init(x: self.bottomToast.frame.origin.x,
+                                                     y: bottomToastY),
+                                       size: self.bottomToast.frame.size)
+        
+        var leftToastX = self.leadingToast.frame.origin.x
+        leftToastX += 10
+        self.leadingToast.frame = .init(origin: .init(x: leftToastX,
+                                                      y: self.leadingToast.frame.origin.y),
+                                        size: self.leadingToast.frame.size)
+        
+        var rightToastX = self.trailingToast.frame.origin.x
+        rightToastX -= 10
+        self.trailingToast.frame = .init(origin: .init(x: rightToastX,
+                                                       y: self.trailingToast.frame.origin.y),
+                                         size: self.trailingToast.frame.size)
+        self.calculatePositionReached()
     }
-    private let topEnemy = UIImageView(image: UIImage(named: "toast"))
-    private let bottomEnemy = UIImageView(image: UIImage(named: "toast"))
-    private let leadingEnemy = UIImageView(image: UIImage(named: "toast"))
-    private let trailingEnemy = UIImageView(image: UIImage(named: "toast"))
-    private let scoreLabel = UILabel().then {
-        $0.textAlignment = .center
+    
+    private func calculatePositionReached() {
+        if self.kurommi.frame.minX <= self.topToast.frame.minX &&
+            self.kurommi.frame.maxX >= self.topToast.frame.maxX &&
+            self.kurommi.frame.minY <= self.topToast.frame.minY &&
+            self.kurommi.frame.maxY >= self.topToast.frame.maxY
+        {
+            self.scoreLabel.text = "ByeBye\nScore:\(self.score)"
+            self.stopTimer()
+        } else {
+            self.score += 10
+        }
+        
+        if self.kurommi.frame.minX <= self.leadingToast.frame.minX &&
+            self.kurommi.frame.maxX >= self.leadingToast.frame.maxX &&
+            self.kurommi.frame.minY <= self.leadingToast.frame.minY &&
+            self.kurommi.frame.maxY >= self.leadingToast.frame.maxY
+        {
+            self.scoreLabel.text = "ByeBye\nScore:\(self.score)"
+            self.stopTimer()
+        } else {
+            self.score += 10
+        }
+        
+        if self.kurommi.frame.minX <= self.trailingToast.frame.minX &&
+            self.kurommi.frame.maxX >= self.trailingToast.frame.maxX &&
+            self.kurommi.frame.minY <= self.trailingToast.frame.minY &&
+            self.kurommi.frame.maxY >= self.trailingToast.frame.maxY
+        {
+            self.scoreLabel.text = "ByeBye\nScore:\(self.score)"
+            self.stopTimer()
+        } else {
+            self.score += 10
+        }
+        
+        if self.kurommi.frame.minX <= self.bottomToast.frame.minX &&
+            self.kurommi.frame.maxX >= self.bottomToast.frame.maxX &&
+            self.kurommi.frame.minY <= self.bottomToast.frame.minY &&
+            self.kurommi.frame.maxY >= self.bottomToast.frame.maxY
+        {
+            self.scoreLabel.text = "ByeBye\nScore:\(self.score)"
+            self.stopTimer()
+        } else {
+            self.score += 10
+        }
     }
 }
-
