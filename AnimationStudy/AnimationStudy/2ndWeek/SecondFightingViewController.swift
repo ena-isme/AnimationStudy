@@ -8,7 +8,7 @@
 import UIKit
 
 class SecondFightingViewController: UIViewController {
-
+    
     var score: Int = 0
     var timer: Timer? = nil
     var isPause: Bool = true
@@ -25,6 +25,9 @@ class SecondFightingViewController: UIViewController {
         $0.textColor = .brown
         $0.numberOfLines = 2
     }
+    
+    //저는 viewDidLoad startTimer 를 바로 시작하지 않고 longPress 제스처를 추가했어요
+    //꾹 눌렀다가 땠을 때 startTimer 가 시작될 수 있게 .ended 에다가 startTimer()를 시작했답니다!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +58,7 @@ class SecondFightingViewController: UIViewController {
         let changedY = kurommi.center.y + transition.y
         
         self.kurommi.center = .init(x: changedX,
-                                     y: changedY)
+                                    y: changedY)
         sender.setTranslation(.zero, in: self.kurommi)
     }
     
@@ -119,6 +122,7 @@ class SecondFightingViewController: UIViewController {
         }
     }
     
+    //startTimer 가 시작되면 실행되는 함수(토스트가 움직이는 함수)
     @objc
     private func moveToast() {
         var topToastY = self.topToast.frame.origin.y
@@ -147,6 +151,7 @@ class SecondFightingViewController: UIViewController {
         self.calculatePositionReached()
     }
     
+    //토스트랑 쿠로미랑 만났는지 측정해서 게임 점수와 시작,끝 정해주는 함수
     private func calculatePositionReached() {
         if self.kurommi.frame.minX <= self.topToast.frame.minX &&
             self.kurommi.frame.maxX >= self.topToast.frame.maxX &&
