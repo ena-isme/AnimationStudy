@@ -20,6 +20,9 @@
 		2CB775DD2B0108B600710A24 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB775DC2B0108B600710A24 /* SecondViewController.swift */; };
 		2CB775E12B02457600710A24 /* SecondFightingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB775E02B02457600710A24 /* SecondFightingViewController.swift */; };
 		2CC2ABAE2AF52C0500418A7C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2ABAD2AF52C0500418A7C /* Extension.swift */; };
+		2CCC61A82B148F5D00AD4916 /* StarRainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC61A72B148F5D00AD4916 /* StarRainViewController.swift */; };
+		2CCC61AA2B14953600AD4916 /* Transform3DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC61A92B14953600AD4916 /* Transform3DViewController.swift */; };
+		2CCC61AC2B14A89900AD4916 /* Transform3DChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC61AB2B14A89900AD4916 /* Transform3DChangeViewController.swift */; };
 		2CF7D9D72B0B473300014874 /* BezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7D9D62B0B473300014874 /* BezierViewController.swift */; };
 		2CF7D9D92B0B7A6A00014874 /* SquareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7D9D82B0B7A6A00014874 /* SquareViewController.swift */; };
 		2CF7D9DC2B0B7ADC00014874 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7D9DB2B0B7ADC00014874 /* CircleViewController.swift */; };
@@ -41,6 +44,9 @@
 		2CB775DC2B0108B600710A24 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		2CB775E02B02457600710A24 /* SecondFightingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondFightingViewController.swift; sourceTree = "<group>"; };
 		2CC2ABAD2AF52C0500418A7C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		2CCC61A72B148F5D00AD4916 /* StarRainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRainViewController.swift; sourceTree = "<group>"; };
+		2CCC61A92B14953600AD4916 /* Transform3DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform3DViewController.swift; sourceTree = "<group>"; };
+		2CCC61AB2B14A89900AD4916 /* Transform3DChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform3DChangeViewController.swift; sourceTree = "<group>"; };
 		2CF7D9D62B0B473300014874 /* BezierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewController.swift; sourceTree = "<group>"; };
 		2CF7D9D82B0B7A6A00014874 /* SquareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareViewController.swift; sourceTree = "<group>"; };
 		2CF7D9DB2B0B7ADC00014874 /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 				2C5199C42AF3DB61006DCBF5 /* 1stWeek */,
 				2CB775DB2B01089E00710A24 /* 2ndWeek */,
 				2CF7D9D52B0B472000014874 /* 3rdWeek */,
+				2CCC61A62B148F3100AD4916 /* 4thWeek */,
 				2C5199B12AF3CD69006DCBF5 /* Assets.xcassets */,
 				2C5199B62AF3CD69006DCBF5 /* Info.plist */,
 			);
@@ -120,6 +127,16 @@
 				2CB775E02B02457600710A24 /* SecondFightingViewController.swift */,
 			);
 			path = 2ndWeek;
+			sourceTree = "<group>";
+		};
+		2CCC61A62B148F3100AD4916 /* 4thWeek */ = {
+			isa = PBXGroup;
+			children = (
+				2CCC61A72B148F5D00AD4916 /* StarRainViewController.swift */,
+				2CCC61A92B14953600AD4916 /* Transform3DViewController.swift */,
+				2CCC61AB2B14A89900AD4916 /* Transform3DChangeViewController.swift */,
+			);
+			path = 4thWeek;
 			sourceTree = "<group>";
 		};
 		2CF7D9D52B0B472000014874 /* 3rdWeek */ = {
@@ -216,6 +233,7 @@
 			files = (
 				2C7B84382AF7E4FE008AD07E /* FirstAssignmentToastView.swift in Sources */,
 				2CF7D9E22B0B807600014874 /* Core&BezierViewController.swift in Sources */,
+				2CCC61AC2B14A89900AD4916 /* Transform3DChangeViewController.swift in Sources */,
 				2CF7D9DC2B0B7ADC00014874 /* CircleViewController.swift in Sources */,
 				2CB775E12B02457600710A24 /* SecondFightingViewController.swift in Sources */,
 				2C5199AD2AF3CD67006DCBF5 /* FirstViewController.swift in Sources */,
@@ -226,8 +244,10 @@
 				2CB775DD2B0108B600710A24 /* SecondViewController.swift in Sources */,
 				2CF7D9E02B0B7EC700014874 /* CoreAnimationViewController.swift in Sources */,
 				2C5199A92AF3CD67006DCBF5 /* AppDelegate.swift in Sources */,
+				2CCC61AA2B14953600AD4916 /* Transform3DViewController.swift in Sources */,
 				2CF7D9D72B0B473300014874 /* BezierViewController.swift in Sources */,
 				2C5199AB2AF3CD67006DCBF5 /* SceneDelegate.swift in Sources */,
+				2CCC61A82B148F5D00AD4916 /* StarRainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
