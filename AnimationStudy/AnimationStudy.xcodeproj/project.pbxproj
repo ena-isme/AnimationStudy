@@ -23,6 +23,7 @@
 		2CCC61A82B148F5D00AD4916 /* StarRainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC61A72B148F5D00AD4916 /* StarRainViewController.swift */; };
 		2CCC61AA2B14953600AD4916 /* Transform3DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC61A92B14953600AD4916 /* Transform3DViewController.swift */; };
 		2CCC61AC2B14A89900AD4916 /* Transform3DChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCC61AB2B14A89900AD4916 /* Transform3DChangeViewController.swift */; };
+		2CD515B82B1CA76700042B96 /* EmitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD515B72B1CA76700042B96 /* EmitterViewController.swift */; };
 		2CF7D9D72B0B473300014874 /* BezierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7D9D62B0B473300014874 /* BezierViewController.swift */; };
 		2CF7D9D92B0B7A6A00014874 /* SquareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7D9D82B0B7A6A00014874 /* SquareViewController.swift */; };
 		2CF7D9DC2B0B7ADC00014874 /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7D9DB2B0B7ADC00014874 /* CircleViewController.swift */; };
@@ -47,6 +48,7 @@
 		2CCC61A72B148F5D00AD4916 /* StarRainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRainViewController.swift; sourceTree = "<group>"; };
 		2CCC61A92B14953600AD4916 /* Transform3DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform3DViewController.swift; sourceTree = "<group>"; };
 		2CCC61AB2B14A89900AD4916 /* Transform3DChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform3DChangeViewController.swift; sourceTree = "<group>"; };
+		2CD515B72B1CA76700042B96 /* EmitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterViewController.swift; sourceTree = "<group>"; };
 		2CF7D9D62B0B473300014874 /* BezierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierViewController.swift; sourceTree = "<group>"; };
 		2CF7D9D82B0B7A6A00014874 /* SquareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareViewController.swift; sourceTree = "<group>"; };
 		2CF7D9DB2B0B7ADC00014874 /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				2CB775DB2B01089E00710A24 /* 2ndWeek */,
 				2CF7D9D52B0B472000014874 /* 3rdWeek */,
 				2CCC61A62B148F3100AD4916 /* 4thWeek */,
+				2CD515B62B1CA6AF00042B96 /* 5thWeek */,
 				2C5199B12AF3CD69006DCBF5 /* Assets.xcassets */,
 				2C5199B62AF3CD69006DCBF5 /* Info.plist */,
 			);
@@ -137,6 +140,14 @@
 				2CCC61AB2B14A89900AD4916 /* Transform3DChangeViewController.swift */,
 			);
 			path = 4thWeek;
+			sourceTree = "<group>";
+		};
+		2CD515B62B1CA6AF00042B96 /* 5thWeek */ = {
+			isa = PBXGroup;
+			children = (
+				2CD515B72B1CA76700042B96 /* EmitterViewController.swift */,
+			);
+			path = 5thWeek;
 			sourceTree = "<group>";
 		};
 		2CF7D9D52B0B472000014874 /* 3rdWeek */ = {
@@ -232,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7B84382AF7E4FE008AD07E /* FirstAssignmentToastView.swift in Sources */,
+				2CD515B82B1CA76700042B96 /* EmitterViewController.swift in Sources */,
 				2CF7D9E22B0B807600014874 /* Core&BezierViewController.swift in Sources */,
 				2CCC61AC2B14A89900AD4916 /* Transform3DChangeViewController.swift in Sources */,
 				2CF7D9DC2B0B7ADC00014874 /* CircleViewController.swift in Sources */,
